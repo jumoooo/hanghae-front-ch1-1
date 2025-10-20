@@ -4,15 +4,20 @@ import { Event } from '../types.ts';
  * 주어진 년도와 월의 일수를 반환합니다.
  */
 export function getDaysInMonth(year: number, month: number): number {
+  // easy.dateUtils.spec.ts 의 '유효하지 않은 월에 대해 적절히 처리한다'
+  if (!month || 1 > month || 12 < month) return 0;
+
   return new Date(year, month, 0).getDate();
 }
 
 /**
  * 주어진 날짜가 속한 주의 모든 날짜를 반환합니다.
+ * isStartMonday : 월요일이 시작일 때 기준으로 변경 (기본값은 일요일이 주의 시작일)
  */
-export function getWeekDates(date: Date): Date[] {
+export function getWeekDates(date: Date, isStartMonday: Boolean = false): Date[] {
   const day = date.getDay();
-  const diff = date.getDate() - day;
+  // const diff = date.getDate() - day;
+  const diff = isStartMonday ? date.getDate() - (day === 0 ? 6 : day - 1) : date.getDate() - day;
   const sunday = new Date(date.setDate(diff));
   const weekDates = [];
   for (let i = 0; i < 7; i++) {
@@ -51,6 +56,9 @@ export function getWeeksAtMonth(currentDate: Date) {
   return weeks;
 }
 
+/**
+ * 특정 날짜(일) 의 이벤트 반환
+ */
 export function getEventsForDay(events: Event[], date: number): Event[] {
   return events.filter((event) => new Date(event.date).getDate() === date);
 }
@@ -101,10 +109,14 @@ export function fillZero(value: number, size = 2) {
   return String(value).padStart(size, '0');
 }
 
-export function formatDate(currentDate: Date, day?: number) {
+/**
+ * 날짜 포멧 : ex) '2025-10-20'
+ */
+export function formatDate(currentDate: Date, options?: { day?: number; separator?: string }) {
+  const { day, separator } = { separator: '-', ...options };
   return [
     currentDate.getFullYear(),
     fillZero(currentDate.getMonth() + 1),
     fillZero(day ?? currentDate.getDate()),
-  ].join('-');
+  ].join(separator);
 }

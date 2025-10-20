@@ -20,6 +20,7 @@ const defaultEvent: Event = {
   notificationTime: 30,
 };
 describe('getUpcomingEvents', () => {
+  // mock event 데이터
   const events = [
     {
       ...defaultEvent,
@@ -120,7 +121,7 @@ describe('createNotificationMessage', () => {
       endTime: '15:30',
       notificationTime: notificationTime,
     };
-    const expectedStr = `${notificationTime}분 후 ${title} 일정이 시작됩니다.`;
-    expect(createNotificationMessage(event)).toBe(expectedStr);
+    const expectedData = `${notificationTime}분 후 ${title} 일정이 시작됩니다.`;
+    expect(createNotificationMessage(event)).toBe(expectedData);
   });
 });

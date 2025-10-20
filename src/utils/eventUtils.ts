@@ -38,6 +38,7 @@ function filterEventsByDateRangeAtMonth(events: Event[], currentDate: Date) {
   return filterEventsByDateRange(events, monthStart, monthEnd);
 }
 
+// 이벤트 조회
 export function getFilteredEvents(
   events: Event[],
   searchTerm: string,

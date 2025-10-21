@@ -250,7 +250,7 @@ function App() {
               {weeks.map((week, weekIndex) => (
                 <TableRow key={weekIndex}>
                   {week.map((day, dayIndex) => {
-                    const dateString = day ? formatDate(currentDate, { day }) : '';
+                    const dateString = day ? formatDate(currentDate, day) : '';
                     const holiday = holidays[dateString];
 
                     return (

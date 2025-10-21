@@ -112,11 +112,10 @@ export function fillZero(value: number, size = 2) {
 /**
  * 날짜 포멧 : ex) '2025-10-20'
  */
-export function formatDate(currentDate: Date, options?: { day?: number; separator?: string }) {
-  const { day, separator } = { separator: '-', ...options };
+export function formatDate(currentDate: Date, day?: number) {
   return [
     currentDate.getFullYear(),
     fillZero(currentDate.getMonth() + 1),
     fillZero(day ?? currentDate.getDate()),
-  ].join(separator);
+  ].join('-');
 }

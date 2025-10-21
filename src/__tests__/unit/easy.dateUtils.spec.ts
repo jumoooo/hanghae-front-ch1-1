@@ -339,41 +339,40 @@ describe('isDateInRange', () => {
 });
 
 describe('fillZero', () => {
-  it("5를 2자리로 변환하면 '05'를 반환한다", () => {
-    expect(fillZero(5, 2)).toBe('05');
-  });
-
-  it("10을 2자리로 변환하면 '10'을 반환한다", () => {
-    expect(fillZero(10, 2)).toBe('10');
-  });
-
-  it("3을 3자리로 변환하면 '003'을 반환한다", () => {
-    expect(fillZero(3, 3)).toBe('003');
-  });
-
-  it("100을 2자리로 변환하면 '100'을 반환한다", () => {
-    expect(fillZero(100, 2)).toBe('100');
-  });
-
-  it("0을 2자리로 변환하면 '00'을 반환한다", () => {
-    expect(fillZero(0, 2)).toBe('00');
-  });
-
-  it("1을 5자리로 변환하면 '00001'을 반환한다", () => {
-    expect(fillZero(1, 5)).toBe('00001');
-  });
-
-  // // 함수 넣는건 똑같은데 반복문 없나? => each
-  // it.each([
-  //   [5, 2, '05'],
-  //   [10, 2, '10'],
-  //   [3, 3, '003'],
-  //   [100, 2, '100'],
-  //   [0, 2, '00'],
-  //   [1, 5, '00001'],
-  // ])(`%i을 %i자리로 변환하면 '%s' 을 반환한다`, (value, length, expeted) => {
-  //   expect(fillZero(value, length)).toBe(expeted);
+  // it("5를 2자리로 변환하면 '05'를 반환한다", () => {
+  //   expect(fillZero(5, 2)).toBe('05');
   // });
+
+  // it("10을 2자리로 변환하면 '10'을 반환한다", () => {
+  //   expect(fillZero(10, 2)).toBe('10');
+  // });
+
+  // it("3을 3자리로 변환하면 '003'을 반환한다", () => {
+  //   expect(fillZero(3, 3)).toBe('003');
+  // });
+
+  // it("100을 2자리로 변환하면 '100'을 반환한다", () => {
+  //   expect(fillZero(100, 2)).toBe('100');
+  // });
+
+  // it("0을 2자리로 변환하면 '00'을 반환한다", () => {
+  //   expect(fillZero(0, 2)).toBe('00');
+  // });
+
+  // it("1을 5자리로 변환하면 '00001'을 반환한다", () => {
+  //   expect(fillZero(1, 5)).toBe('00001');
+  // });
+
+  it.each([
+    [5, 2, '05'],
+    [10, 2, '10'],
+    [3, 3, '003'],
+    [100, 2, '100'],
+    [0, 2, '00'],
+    [1, 5, '00001'],
+  ])(`%i을 %i자리로 변환하면 '%s' 을 반환한다`, (value, length, expeted) => {
+    expect(fillZero(value, length)).toBe(expeted);
+  });
 
   it("소수점이 있는 3.14를 5자리로 변환하면 '03.14'를 반환한다", () => {
     expect(fillZero(3.14, 5)).toBe('03.14');
@@ -400,7 +399,7 @@ describe('formatDate', () => {
     const inputDate = new Date(2025, 9, 20); // 2025-10-20
     const expectedDate = '2025-10-15';
 
-    expect(formatDate(inputDate, { day: 15 })).toBe(expectedDate);
+    expect(formatDate(inputDate, 15)).toBe(expectedDate);
   });
 
   it('월이 한 자리 수일 때 앞에 0을 붙여 포맷팅한다', () => {
@@ -415,12 +414,5 @@ describe('formatDate', () => {
     const expectedDate = '2025-09-02';
 
     expect(formatDate(inputDate)).toBe(expectedDate);
-  });
-
-  it('날짜 포맷팅의 분리문자 추가시 문자에 맞게 포맷팅한다', () => {
-    const inputDate = new Date(2025, 8, 2); // 2025-9-2
-    const expectedDate = '2025/09/02';
-
-    expect(formatDate(inputDate, { separator: '/' })).toBe(expectedDate);
   });
 });

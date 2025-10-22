@@ -107,6 +107,7 @@ function App() {
   const [overlappingEvents, setOverlappingEvents] = useState<Event[]>([]);
   //#endregion
 
+  // 김준모 추가
   const handleOverlapDetected = (events: Event[]) => {
     setOverlappingEvents(events);
     setIsOverlapDialogOpen(true);

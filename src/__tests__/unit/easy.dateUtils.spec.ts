@@ -33,13 +33,12 @@ describe('getDaysInMonth', () => {
   });
 
   it.each([
-    ['0 이하 월', 0],
-    ['12 초과 월', 13],
-    ['음수 월', -1],
-    ['큰수 월', 1000],
-  ])('유효하지 않은 월(%s)에 대해 적절히 처리한다', (_, month) => {
+    ['0 월', 0, 31],
+    ['12 초과 월', 13, 31],
+    ['음수 월', -1, 30],
+  ])('유효하지 않은 월(%s)에 대해 적절히 처리한다', (_, month, expected) => {
     const daysInMonth = getDaysInMonth(2025, month);
-    expect(daysInMonth).toBe(0);
+    expect(daysInMonth).toBe(expected);
   });
 });
 

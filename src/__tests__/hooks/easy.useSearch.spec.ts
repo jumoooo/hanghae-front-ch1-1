@@ -4,6 +4,7 @@ import { useSearch } from '../../hooks/useSearch.ts';
 import { Event, RepeatInfo } from '../../types.ts';
 
 const toDay = new Date(2025, 6, 2); // 2025-07-02
+
 const defaultRepeat: RepeatInfo = {
   type: 'none',
   interval: 1,

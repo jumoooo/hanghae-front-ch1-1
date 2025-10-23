@@ -9,7 +9,7 @@ import {
 import { useEventOperations } from '../../hooks/useEventOperations.ts';
 // import { server } from '../../setupTests.ts';
 import { Event } from '../../types.ts';
-import { wait } from '@testing-library/user-event/dist/cjs/utils/index.js';
+// import { wait } from '@testing-library/user-event/dist/cjs/utils/index.js';
 import { useNotifications } from '../../hooks/useNotifications.ts';
 
 const enqueueSnackbarFn = vi.fn();
@@ -272,14 +272,12 @@ describe('useEventOperations 네트워크 오류시 테스트', () => {
     ];
     setupMockHandlers(events);
     const { result } = renderHook(() => useEventOperations(true));
-    const { result: res_noti } = renderHook(() => useNotifications(events));
     const delete_id = '1';
 
     await act(async () => {
       await result.current.deleteEvent(delete_id);
     });
     await waitFor(() => {
-      console.log('!!!', res_noti.current.notifications);
       expect(enqueueSnackbarFn).toHaveBeenCalledWith('일정 삭제 실패', {
         variant: 'error',
       });

@@ -102,16 +102,8 @@ function App() {
   const { view, setView, currentDate, holidays, navigate } = useCalendarView();
   const { searchTerm, filteredEvents, setSearchTerm } = useSearch(events, currentDate, view);
 
-  //#region '최상부에서 관리해야하는 상태값'
   const [isOverlapDialogOpen, setIsOverlapDialogOpen] = useState(false);
   const [overlappingEvents, setOverlappingEvents] = useState<Event[]>([]);
-  //#endregion
-
-  // 김준모 추가
-  const handleOverlapDetected = (events: Event[]) => {
-    setOverlappingEvents(events);
-    setIsOverlapDialogOpen(true);
-  };
 
   const { enqueueSnackbar } = useSnackbar();
 

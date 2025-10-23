@@ -8,6 +8,9 @@ import { Event } from '../types';
 export const handlers: HttpHandler[] = [
   // 조회
   http.get('/api/events', async () => {
+    if (events.length === 0) {
+      return HttpResponse.json(null, { status: 500 });
+    }
     return HttpResponse.json({ events }, { status: 200 });
   }),
 

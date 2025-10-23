@@ -14,8 +14,8 @@ export const useEventOperations = (editing: boolean, onSave?: () => void) => {
         throw new Error('Failed to fetch events');
       }
       const { events } = await response.json();
-      // console.log(events);
       setEvents(events);
+      enqueueSnackbar('이벤트 로딩 실패', { variant: 'error' });
     } catch (error) {
       console.error('Error fetching events:', error);
       enqueueSnackbar('이벤트 로딩 실패', { variant: 'error' });

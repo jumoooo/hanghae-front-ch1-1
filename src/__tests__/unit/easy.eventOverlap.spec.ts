@@ -83,8 +83,8 @@ describe('convertEventToDateRange', () => {
       id: '3',
       title: '잘못된 시간 이벤트',
       date: '2025-07-02',
-      startTime: '14:30',
-      endTime: '15:30',
+      startTime: '33:30',
+      endTime: '900:30',
     },
   ];
 
@@ -108,7 +108,7 @@ describe('convertEventToDateRange', () => {
     const inputData = mockEvents.find((e) => e.title === '잘못된 시간 이벤트') as Event;
     const res = convertEventToDateRange(inputData);
 
-    [res.start, res.end].forEach((date) => {
+    [(res.start, res.end)].forEach((date) => {
       expect(isNaN(date.getTime())).toBe(true);
     });
   });

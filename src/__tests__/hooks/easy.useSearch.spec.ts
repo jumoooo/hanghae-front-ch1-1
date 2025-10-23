@@ -3,8 +3,6 @@ import { act, renderHook } from '@testing-library/react';
 import { useSearch } from '../../hooks/useSearch.ts';
 import { Event, RepeatInfo } from '../../types.ts';
 
-const toDay = new Date(2025, 6, 2); // 2025-07-02
-
 const defaultRepeat: RepeatInfo = {
   type: 'none',
   interval: 1,
@@ -64,6 +62,7 @@ const events: Event[] = [
 ];
 
 describe('검색어 [주간] 테스트 ', () => {
+  const toDay = new Date(2025, 6, 2); // 2025-07-02
   it('[주간] 검색어가 비어있을 때 모든 이벤트를 반환해야 한다', () => {
     const { result: result_week } = renderHook(() => useSearch(events, toDay, 'week'));
     act(() => {
@@ -168,6 +167,7 @@ describe('검색어 [주간] 테스트 ', () => {
   });
 });
 describe('검색어 [월간] 테스트', () => {
+  const toDay = new Date(2025, 6, 2); // 2025-07-02
   it('[월간] 검색어가 비어있을 때 모든 이벤트를 반환해야 한다', () => {
     const { result: result_month } = renderHook(() => useSearch(events, toDay, 'month'));
     act(() => {
